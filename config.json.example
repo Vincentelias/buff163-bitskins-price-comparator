@@ -1,7 +1,7 @@
 {
   "main":{
     "game": "csgo",
-    "buff_session_id": "1-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "buff_session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "bitskins_api_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "bitskins_api_endpoint": "https://bitskins.com/api/v1/{}/?api_key={}&code={}&app_id={}",
     "buff_api_endpoint": "https://buff.163.com/market/?game={}#tab=selling&page_num={}&category_group={}&min_price={}&max_price={}&quality={}",

@@ -1,4 +1,4 @@
-# Buf.163 and Bitskins price comparator
+# Buff.163 and Bitskins price comparator
 Program that compares the lowest selling prices of csgo items on buff.163 to those on bitskins. The program calculates the discount on buff.163 compared to bitskins and sorts it accordingly (per item). 
 
 ## Requirements
