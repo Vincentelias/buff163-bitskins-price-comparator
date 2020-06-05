@@ -12,8 +12,8 @@ Program that compares the lowest selling prices of csgo items on buff.163 to tho
 2. Install the dependencies  
 `pip install bs4 selenium pyotp`
 3. Check your current chrome version and download the corresponding chrome driver (https://chromedriver.chromium.org/). Put the chromedriver.exe file in the root of the project. This browser will be used to scrape from buff.163
-4. Enable 2-factor-authentication and API access on your bitskins account and take note of your 2FA secret as well as your API key (only shows when first setting up 2FA on your account)
-5. Login to your buff.163 account and take note of your session id in your cookie (press f12 in chrome -> application -> cookies -> https://buff.163.com -> session)
+4. Enable 2-factor-authentication and API access on your bitskins account and write down your 2FA secret as well as your API key (only shows when first setting up 2FA on your account)
+5. Login to your buff.163 account and write down your session id in your cookie (press f12 in chrome -> application -> cookies -> https://buff.163.com -> session)
 6. rename config.json.example to config.json and fill in following values:
     - buff_sesion_id
     - two_factor_secret
