@@ -1,10 +1,12 @@
 from bs4 import BeautifulSoup
 from time import sleep
 from game import Item
+import re
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+
 
 class BuffAPI:
 
@@ -27,7 +29,7 @@ class BuffAPI:
 
     def generate_quality(self, show_stattrak):
 
-        #todo optimize stattrak readings
+        # todo optimize stattrak readings
         if show_stattrak:
             if self.category_group == "knife":
                 return "unusual_strange"
@@ -45,7 +47,7 @@ class BuffAPI:
         for soup in item_soups:
             list_items = soup.find_all("li")
             for list_item in list_items:
-                #todo optimize selecting item name and price
+                # todo optimize selecting item name and price
                 item_name = str(list_item.find_all("a")[0].get("title"))
                 item_price_string = str(list_item.find("strong", {"class": "f_Strong"}))
                 price_array = re.findall(r'\d+', item_price_string)
@@ -60,7 +62,7 @@ class BuffAPI:
         if not self.show_browser_window:
             options.add_argument("--headless")
 
-        driver = webdriver.Chrome("./chromedriver", chrome_options=options)
+        driver = webdriver.Chrome("C:/Windows/chromedriver.exe", chrome_options=options)
         print("setting session id..")
         self.set_cookie_session(driver)
         current_page = 1
@@ -88,7 +90,7 @@ class BuffAPI:
             )
         except Exception:
             driver.quit()
-            print("Unable to get skins from page "+str(page))
+            print("Unable to get skins from page " + str(page))
 
         print("retrieved buff.163 page " + str(page))
         return driver.page_source

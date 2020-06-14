@@ -9,18 +9,18 @@ class BitskinsAPI:
         self.api_endpoint = config["main"]["bitskins_api_endpoint"]
         self.api_key = config["main"]["bitskins_api_key"]
         self.token_generator = pyotp.TOTP(config["main"]["two_factor_secret"])
-        self.min_amount_for_sale=config["main"]["min_amount_for_sale"]
+        self.min_amount_for_sale = config["main"]["min_amount_for_sale"]
 
     def get_items(self):
         # csgo
         if self.app_id == 730:
             data = self.make_api_request("get_price_data_for_items_on_sale")
-            items=[]
+            items = []
             for item in data["data"]["items"]:
-                name=item["market_hash_name"]
-                price=item["lowest_price"]
-                if item["total_items"]>self.min_amount_for_sale:
-                    items.append(Item(name,float(price)))
+                name = item["market_hash_name"]
+                price = item["lowest_price"]
+                if item["total_items"] > self.min_amount_for_sale:
+                    items.append(Item(name, float(price)))
             return items
 
     def get_app_id(self, game):

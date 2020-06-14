@@ -11,8 +11,8 @@
     "min_amount_for_sale":10
   },
   "csgo": {
-    "min_price": 100,
-    "max_price": 105,
+    "min_price": 200,
+    "max_price": 225,
     "category_group": "knife",
     "show_stattrak": false
   }
