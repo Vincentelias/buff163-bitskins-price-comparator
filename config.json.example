@@ -1,19 +1,20 @@
 {
   "main":{
-    "game": "csgo",
-    "buff_session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    "bitskins_api_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    "bitskins_api_endpoint": "https://bitskins.com/api/v1/{}/?api_key={}&code={}&app_id={}",
-    "buff_api_endpoint": "https://buff.163.com/market/?game={}#tab=selling&page_num={}&category_group={}&min_price={}&max_price={}&quality={}",
     "request_interval": 5,
-    "two_factor_secret": "XXXXXXXXXXXXXXXXX",
-    "show_browser_window": false,
-    "min_amount_for_sale":10
+    "show_browser_window": true
   },
-  "csgo": {
-    "min_price": 200,
-    "max_price": 225,
+  "bitskins": {
+    "min_price": 1100,
+    "max_price": 1500,
+    "min_amount_for_sale":2,
+    "api_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "two_factor_secret": "XXXXXXXXXXXXXX",
+    "api_endpoint": "https://bitskins.com/api/v1/{}/?api_key={}&code={}&app_id=730"
+  },
+  "buff": {
     "category_group": "knife",
-    "show_stattrak": false
+    "show_stattrak": false,
+    "api_endpoint": "https://buff.163.com/market/?game=csgo#tab=selling&page_num={}&category_group={}&min_price={}&max_price={}&quality={}",
+    "session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
   }
 }

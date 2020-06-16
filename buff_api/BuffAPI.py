@@ -12,13 +12,12 @@ class BuffAPI:
 
     def __init__(self, config):
         self.config = config
-        self.game = config["main"]["game"]
-        self.min_price = config["csgo"]["min_price"]
-        self.max_price = config["csgo"]["max_price"]
-        self.category_group = config["csgo"]["category_group"]
-        self.quality = self.generate_quality(config["csgo"]["show_stattrak"])
-        self.buff_api_endpoint = config["main"]["buff_api_endpoint"]
-        self.buff_session_id = config["main"]["buff_session_id"]
+        self.min_price = config["bitskins"]["min_price"]
+        self.max_price = config["bitskins"]["max_price"]
+        self.category_group = config["buff"]["category_group"]
+        self.quality = self.generate_quality(config["buff"]["show_stattrak"])
+        self.buff_api_endpoint = config["buff"]["api_endpoint"]
+        self.buff_session_id = config["buff"]["session_id"]
         self.request_interval = config["main"]["request_interval"]
         self.show_browser_window = config["main"]["show_browser_window"]
 
@@ -80,7 +79,7 @@ class BuffAPI:
         return item_soups
 
     def get_page_html(self, page, driver):
-        api_url = self.buff_api_endpoint.format(self.game, page, self.category_group, self.min_price,
+        api_url = self.buff_api_endpoint.format(page, self.category_group, self.min_price,
                                                 self.max_price, self.quality)
         driver.get(api_url)
         driver.refresh()

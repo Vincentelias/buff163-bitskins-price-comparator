@@ -15,9 +15,9 @@ Program that compares the lowest selling prices of csgo items on buff.163 to tho
 4. Enable 2-factor-authentication and API access on your bitskins account and write down your 2FA secret (only shows when first setting up 2FA on your account) as well as your API key
 5. Login to your buff.163 account and write down your session id in your cookie (press f12 in chrome -> application -> cookies -> https://buff.163.com -> session)
 6. rename config.json.example to config.json and fill in following values:
-    - buff_sesion_id
+    - session_id
     - two_factor_secret
-    - bitskins_api_key
+    - api_key
 
 ## Usage
 Inside root folder: `python comparator`  
