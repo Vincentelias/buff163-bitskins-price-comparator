@@ -1,20 +1,23 @@
 {
   "main":{
     "request_interval": 5,
-    "show_browser_window": true
+    "show_browser_window": false
   },
   "bitskins": {
-    "min_price": 1100,
-    "max_price": 1500,
-    "min_amount_for_sale":2,
-    "api_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    "two_factor_secret": "XXXXXXXXXXXXXX",
-    "api_endpoint": "https://bitskins.com/api/v1/{}/?api_key={}&code={}&app_id=730"
+    "min_price": 100,
+    "max_price":500,
+    "exclude_extremes": true,
+    "price_calculation": "average",
+    "pricing_time_period": 14,
+    "pricing_min_amount_sold": 2,
+    "api_key": "XXXXXXXXXXXXXXXXXXXXXXX",
+    "two_factor_secret": "XXXXXXXXXXXXXXXXX",
+    "api_endpoint": "https://bitskins.com/api/v1/{}/?api_key={}&code={}&app_id=730&market_hash_name={}"
   },
   "buff": {
-    "category_group": "knife",
-    "show_stattrak": false,
+    "category_group": "",
+    "show_stattrak": true,
     "api_endpoint": "https://buff.163.com/market/?game=csgo#tab=selling&page_num={}&category_group={}&min_price={}&max_price={}&quality={}",
-    "session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    "session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
   }
 }

@@ -91,7 +91,7 @@ class BuffAPI:
             driver.quit()
             print("Unable to get skins from page " + str(page))
 
-        print("retrieved buff.163 page " + str(page))
+        print("retrieved buff page " + str(page))
         return driver.page_source
 
     def set_cookie_session(self, driver):
