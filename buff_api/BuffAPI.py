@@ -11,35 +11,20 @@ from selenium.webdriver.common.by import By
 class BuffAPI:
 
     def __init__(self, config):
-        self.config = config
-        self.min_price = config["bitskins"]["min_price"]
-        self.max_price = config["bitskins"]["max_price"]
-        self.category_group = config["buff"]["category_group"]
-        self.quality = self.generate_quality(config["buff"]["show_stattrak"])
-        self.buff_api_endpoint = config["buff"]["api_endpoint"]
-        self.buff_session_id = config["buff"]["session_id"]
-        self.request_interval = config["main"]["request_interval"]
-        self.show_browser_window = config["main"]["show_browser_window"]
+        self.min_price = config["buff_reload"]["min_price"]
+        self.max_price = config["buff_reload"]["max_price"]
+        self.category_group = config["buff_reload"]["category_group"]
+        self.quality = config["buff_reload"]["quality"]
+        self.url = config["buff_reload"]["url"]
+        self.buff_session_id = config["buff_reload"]["session_id"]
+        self.request_interval = config["buff_reload"]["request_interval"]
+        self.show_browser_window = config["buff_reload"]["show_browser_window"]
 
     def get_items(self):
         item_soups = self.get_item_soups()
         items = self.generate_items(item_soups)
         return items
 
-    def generate_quality(self, show_stattrak):
-
-        # todo optimize stattrak readings
-        if show_stattrak:
-            if self.category_group == "knife":
-                return "unusual_strange"
-            else:
-                return ""
-
-        else:
-            if self.category_group == "knife":
-                return "unusual"
-            else:
-                return "normal"
 
     def generate_items(self, item_soups):
         items = []
@@ -79,10 +64,11 @@ class BuffAPI:
         return item_soups
 
     def get_page_html(self, page, driver):
-        api_url = self.buff_api_endpoint.format(page, self.category_group, self.min_price,
+        url = self.url.format(page, self.category_group, self.min_price,
                                                 self.max_price, self.quality)
-        driver.get(api_url)
+        driver.get(url)
         driver.refresh()
+
         try:
             WebDriverWait(driver, 60).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "card_csgo"))

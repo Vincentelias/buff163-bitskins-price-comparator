@@ -4,29 +4,30 @@ from game import Item
 from datetime import datetime
 import statistics
 
-
 class BitskinsAPI:
 
     def __init__(self, config):
-        self.api_endpoint = config["bitskins"]["api_endpoint"]
-        self.api_key = config["bitskins"]["api_key"]
-        self.price_calculation = config["bitskins"]["price_calculation"]
-        self.pricing_time_period = config["bitskins"]["pricing_time_period"]
-        self.exclude_extremes = config["bitskins"]["exclude_extremes"]
-        self.pricing_min_amount_sold = config["bitskins"]["pricing_min_amount_sold"]
-        self.token_generator = pyotp.TOTP(config["bitskins"]["two_factor_secret"])
+        self.api_endpoint = config["bitskins_reload"]["api_endpoint"]
+        self.api_key = config["bitskins_reload"]["api_key"]
+        self.price_calculation = config["bitskins_reload"]["price_calculation"]
+        self.pricing_time_period = config["bitskins_reload"]["pricing_time_period"]
+        self.exclude_extremes = config["bitskins_reload"]["exclude_extremes"]
+        self.pricing_min_amount_sold = config["bitskins_reload"]["pricing_min_amount_sold"]
+        self.token_generator = pyotp.TOTP(config["bitskins_reload"]["two_factor_secret"])
 
     def get_items(self, items):
         bitskins_items = []
         for item in items:
-            bitskins_item = self.generate_item(item.name)
-            bitskins_items.append(bitskins_item)
+            if item.price != 0:
+                bitskins_item = self.generate_item(item.name)
+                bitskins_items.append(bitskins_item)
         return bitskins_items
 
     def generate_item(self, item_name):
         item_sales = self.get_sales_info_json(item_name)
 
         # no item sales on bitskins
+        #todo return None
         if len(item_sales) == 0:
             return Item(item_name, 0)
 
@@ -41,11 +42,11 @@ class BitskinsAPI:
             if days_ago <= self.pricing_time_period:
                 prices.append(float(sale["price"]))
 
-        if len(prices) == 0 or len(prices)<self.pricing_min_amount_sold:
+        if len(prices) == 0 or len(prices) < self.pricing_min_amount_sold:
             return 0
 
-        if self.exclude_extremes and len(prices)>2:
-            prices=self.exclude_extreme_prices(prices)
+        if self.exclude_extremes and len(prices) > 6:
+            prices = self.exclude_extreme_prices(prices)
 
         if self.price_calculation == "average":
             return statistics.mean(prices)
@@ -53,12 +54,12 @@ class BitskinsAPI:
         if self.price_calculation == "lowest":
             return min(prices)
 
-    def exclude_extreme_prices(self,prices):
-        new_prices=[]
+    def exclude_extreme_prices(self, prices):
+        new_prices = []
         for price in prices:
-            amount_from_mean=abs(price-statistics.mean(prices))
-            stdev=statistics.stdev(prices)
-            if amount_from_mean<stdev:
+            amount_from_mean = abs(price - statistics.mean(prices))
+            stdev = statistics.stdev(prices)
+            if amount_from_mean <= stdev or amount_from_mean < price / 20:
                 new_prices.append(price)
         return new_prices
 

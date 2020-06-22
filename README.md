@@ -1,6 +1,5 @@
 # Buff.163 and Bitskins price comparator
-Program that compares the lowest selling prices of csgo items on buff.163 to those on bitskins. The program calculates the discount on buff.163 compared to bitskins and sorts it accordingly (per item). 
-
+Program that compares the lowest selling prices of csgo items on buff.163 to those on bitskins and cs.deals.
 ## Requirements
 - Python > 3.7 (https://www.python.org/downloads/)
 - pip (https://pypi.org/project/pip/)
@@ -20,5 +19,17 @@ Program that compares the lowest selling prices of csgo items on buff.163 to tho
     - api_key
 
 ## Usage
-Inside root folder: `python comparator`  
-The script will first get item data from bitsksins and after that will start scraping each page on buff.163 and collecting the items. After it scraped all pages, you will get a summary of the best discounts based on the config parameters.
+The program has two modes which can set in the config:
+- buy_mode="buff" -> buy on buff, sell on cs.deals (will use bitskins API to get prices)
+- buy_mode="csdeals" -> buy on cs.deals, sell on buff.163 
+
+When executing for the first time, make sure to set "reload_all_items" in the config to true.
+This will reload the items (save to files locally) from cs.deals, bitskins, and buff, based on the parameters in the config.
+When running the program again, you can set "reload_all_items" to false. The program will use the locally saved
+items to create new comparisons.
+
+
+Use `python comparator` in the root folder to start the program
+
+ 
+It will get a summary of the best discounts based on the config parameters.

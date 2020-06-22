@@ -1,23 +1,36 @@
 {
   "main":{
-    "request_interval": 5,
-    "show_browser_window": false
+    "buy_mode": "buff",
+    "reload_all_items": true,
+    "items_local_storage_path": "./item_data"
   },
-  "bitskins": {
+  "comparison_settings": {
+      "buy_min_price": 200,
+      "buy_max_price": 600
+  },
+  "buff_reload": {
+    "request_interval": 5,
+    "show_browser_window": false,
     "min_price": 100,
-    "max_price":500,
+    "max_price": 1000,
+    "category_group": "",
+    "quality": "",
+    "url": "https://buff.163.com/market/?game=csgo#tab=selling&page_num={}&category_group={}&min_price={}&max_price={}&quality={}",
+    "session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  },
+  "bitskins_reload": {
     "exclude_extremes": true,
     "price_calculation": "average",
     "pricing_time_period": 14,
     "pricing_min_amount_sold": 2,
-    "api_key": "XXXXXXXXXXXXXXXXXXXXXXX",
+    "api_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
     "two_factor_secret": "XXXXXXXXXXXXXXXXX",
     "api_endpoint": "https://bitskins.com/api/v1/{}/?api_key={}&code={}&app_id=730&market_hash_name={}"
   },
-  "buff": {
-    "category_group": "",
-    "show_stattrak": true,
-    "api_endpoint": "https://buff.163.com/market/?game=csgo#tab=selling&page_num={}&category_group={}&min_price={}&max_price={}&quality={}",
-    "session_id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  "csdeals_reload": {
+    "min_price": 100,
+    "max_price":1000,
+    "url": "https://cs.deals/market/csgo/?min_price={}&max_price={}",
+    "show_browser_window": false
   }
 }
